@@ -1,0 +1,14 @@
+PadWalker~1.96
+callee~1.100820
+Memcached::Client~2.01
+JSON::XS~2.34
+String::CRC32~1.4
+Memcached::Server~0.04
+Tie::Hash::Identity~0.01
+AnyEvent::Socket
+Hash::Identity~0.01
+common::sense~3.72
+JSON~2.59
+Socket~2.011
+AnyEvent::Handle
+Devel::Caller~2.06
