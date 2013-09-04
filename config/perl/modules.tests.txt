@@ -1,1 +1,2 @@
 Memcached::Client
+Path::Class
