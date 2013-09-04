@@ -1,0 +1,83 @@
+=head1 NAME
+
+Test::AnyEvent::Memcached::MemcachedServer - A in-process memcached server for tests
+
+=head1 SYNOPSIS
+
+  use Test::AnyEvent::Memcached::MemcachedServer;
+  my $server = Test::AnyEvent::Memcached::MemcachedServer->new;
+  $server->start_as_cv->cb(sub {
+    my $port = $server->server_port;
+    my $client = ...->new(servers => ["localhost:$port"]);
+    ...
+    $server->stop_as_cv->cb(sub {
+      ...
+    });
+  });
+
+=head1 DESCRIPTION
+
+The C<Test::AnyEvent::Memcached::MemcachedServer> module contains a
+server supporting the memcached protocol, using the
+L<Memcached::Server> module.  It can be used as a memcached mock
+server running within the same process in test scripts of applications
+accessing memcached.
+
+=head1 MEHTODS
+
+Following methods are available:
+
+=over 4
+
+=item $server = Test::AnyEvent::Memcached::MemcachedServer->new
+
+Create a new instance of memcached server.
+
+=item $cv = $server->start_as_cv
+
+Start the server.  The method returns an L<AnyEvent::CondVar> object,
+whose callback is invoked when the server has started.
+
+=item $cv = $server->stop_as_cv
+
+Stop the server.  The method returns an L<AnyEvent::CondVar> object,
+whose callback is invoked when the server has stopped.
+
+=item $number = $server->server_port
+
+Return the port number listened by the memcached server.
+
+=back
+
+=head1 DEPENDENCY
+
+This module requires Perl 5.8 or later and L<Memcached::Server>.
+
+=head1 SEE ALSO
+
+The module can be combined with L<Test::AnyEvent::Servers>
+<https://github.com/wakaba/perl-test-anyevent-servers> by just
+registering the module name:
+
+  use Test::AnyEvent::Servers;
+  $servers = Test::AnyEvent::Servers;
+  $servers->add('memcached', {
+    class => 'Test::AnyEvent::Memcached::MemcachedServer',
+  });
+  ...
+
+L<Memcached::Server>,
+<https://github.com/memcached/memcached/blob/master/doc/protocol.txt>.
+
+=head1 AUTHOR
+
+Wakaba <wakabatan@hatena.ne.jp>.
+
+=head1 LICENSE
+
+Copyright 2013 Hatena <http://www.hatena.ne.jp/company/>.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
