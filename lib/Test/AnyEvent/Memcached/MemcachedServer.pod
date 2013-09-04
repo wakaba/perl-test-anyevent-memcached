@@ -23,7 +23,7 @@ L<Memcached::Server> module.  It can be used as a memcached mock
 server running within the same process in test scripts of applications
 accessing memcached.
 
-=head1 MEHTODS
+=head1 METHODS
 
 Following methods are available:
 
