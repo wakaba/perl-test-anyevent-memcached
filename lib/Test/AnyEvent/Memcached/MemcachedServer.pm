@@ -19,7 +19,7 @@ sub server_port {
 
 # <https://github.com/memcached/memcached/blob/master/doc/protocol.txt#L79>
 sub _xt ($) {
-    return $_[0] < 60*60*24*30 ? $_[0] + time : $_[0];
+    return $_[0] ? $_[0] < 60*60*24*30 ? $_[0] + time : $_[0] : 2**31;
 }
 
 sub server {
