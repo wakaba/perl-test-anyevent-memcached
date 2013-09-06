@@ -28,19 +28,15 @@ sub server {
         cmd => {
             set => sub {
                 #my ($cb, $key, $flag, $expire, $value) = @_;
-warn "SET\n";
                 $data->{$_[1]} = [$_[4], _xt $_[3]];
                 $_[0]->(1);
             },
             get => sub {
-warn "GET\n";
                 #my ($cb, $key) = @_;
                 if (exists $data->{$_[1]} and
                     _xt $data->{$_[1]}->[1] > time) { # expires
-warn "value 1\n";
                     $_[0]->(1, $data->{$_[1]}->[0]);
                 } else {
-warn "value 0\n";
                     $_[0]->(0);
                 }
             },
@@ -72,7 +68,6 @@ warn "value 0\n";
 }
 
 sub start_as_cv {
-warn "Start memcached server... PORT : " . $_[0]->server_port;
     $_[0]->server->open($_[0]->server_host, $_[0]->server_port);
     my $cv = AE::cv;
     $cv->send(1);
