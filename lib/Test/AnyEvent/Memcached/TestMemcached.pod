@@ -1,11 +1,11 @@
 =head1 NAME
 
-Test::AnyEvent::Memcached::MemcachedServer - A in-process memcached server for tests
+Test::AnyEvent::Memcached::TestMemcached - A memcached server wrapper using |Test::Memcached|
 
 =head1 SYNOPSIS
 
-  use Test::AnyEvent::Memcached::MemcachedServer;
-  my $server = Test::AnyEvent::Memcached::MemcachedServer->new;
+  use Test::AnyEvent::Memcached::TestMemcached;
+  my $server = Test::AnyEvent::Memcached::TestMemcached->new;
   $server->start_as_cv->cb(sub {
     my $port = $server->server_port;
     my $client = ...->new(servers => ["localhost:$port"]);
@@ -17,11 +17,9 @@ Test::AnyEvent::Memcached::MemcachedServer - A in-process memcached server for t
 
 =head1 DESCRIPTION
 
-The C<Test::AnyEvent::Memcached::MemcachedServer> module contains a
-server supporting the memcached protocol, using the
-L<Memcached::Server> module.  It can be used as a memcached mock
-server running within the same process in test scripts of applications
-accessing memcached.
+The C<Test::AnyEvent::Memcached::TestMemcached> module is a wrapper
+for test scripts to start and stop memcached server using
+L<Test::Memcached> module.
 
 =head1 METHODS
 
@@ -29,7 +27,7 @@ Following methods are available:
 
 =over 4
 
-=item $server = Test::AnyEvent::Memcached::MemcachedServer->new
+=item $server = Test::AnyEvent::Memcached::TestMemcached->new
 
 Create a new instance of memcached server.
 
@@ -52,7 +50,7 @@ should be invoked after C<start_as_cv>'s callback has been invoked.
 
 =head1 DEPENDENCY
 
-This module requires Perl 5.8 or later and L<Memcached::Server>.
+This module requires Perl 5.8 or later and L<Test::Memcached>.
 
 =head1 SEE ALSO
 
@@ -63,12 +61,11 @@ registering the module name:
   use Test::AnyEvent::Servers;
   $servers = Test::AnyEvent::Servers;
   $servers->add('memcached', {
-    class => 'Test::AnyEvent::Memcached::MemcachedServer',
+    class => 'Test::AnyEvent::Memcached::TestMemcached',
   });
   ...
 
-L<Memcached::Server>,
-<https://github.com/memcached/memcached/blob/master/doc/protocol.txt>.
+L<Test::Memcached>.
 
 =head1 AUTHOR
 
