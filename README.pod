@@ -1,1 +1,30 @@
-lib/Test/AnyEvent/Memcached/MemcachedServer.pod
+=head1 NAME
+
+Test::AnyEvent::Memcached - Memcached server managers for test scripts.
+
+=head1 MODULES
+
+=over 4
+
+=item L<Test::AnyEvent::Memcached::MemcachedServer>
+
+A in-process memcached-compatible mock server by Memcached::Server.
+
+=item L<Test::AnyEvent::Memcached::TestMemcached>
+
+A memcached server manager using Test::Memcached.
+
+=back
+
+=head1 AUTHOR
+
+Wakaba <wakabatan@hatena.ne.jp>.
+
+=head1 LICENSE
+
+Copyright 2013 Hatena <http://www.hatena.ne.jp/company/>.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
