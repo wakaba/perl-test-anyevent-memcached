@@ -2,6 +2,7 @@ package Test::AnyEvent::Memcached::TestMemcached;
 use strict;
 use warnings;
 our $VERSION = '1.0';
+use Carp;
 use AnyEvent;
 use AnyEvent::Worker;
 
@@ -30,7 +31,7 @@ sub server_host {
 }
 
 sub server_port {
-    return $_[0]->{server_port}; # or undef
+    return $_[0]->{server_port} || croak "|server_port| is not available yet";
 }
 
 sub start_as_cv {
