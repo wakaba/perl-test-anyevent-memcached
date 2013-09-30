@@ -7,7 +7,7 @@ use AnyEvent;
 use AnyEvent::Worker;
 
 sub new {
-    return bless {}, $_[0];
+    return bless {pid => $$}, $_[0];
 }
 
 sub worker {
@@ -53,6 +53,7 @@ sub stop_as_cv {
 }
 
 sub DESTROY {
+    return unless ($_[0]->{pid} || 0) == $$;
     {
         local $@;
         eval { die };

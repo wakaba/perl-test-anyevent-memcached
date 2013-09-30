@@ -6,7 +6,7 @@ use AnyEvent;
 use Memcached::Server;
 
 sub new {
-    return bless {data => {}}, $_[0];
+    return bless {data => {}, pid => $$}, $_[0];
 }
 
 sub server_host {
@@ -82,6 +82,7 @@ sub stop_as_cv {
 }
 
 sub DESTROY {
+    return unless ($_[0]->{pid} || 0) == $$;
     {
         local $@;
         eval { die };
