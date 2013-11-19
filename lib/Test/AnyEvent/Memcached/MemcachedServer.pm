@@ -10,7 +10,7 @@ sub new {
 }
 
 sub server_host {
-    return '0';
+    return '127.0.0.1';
 }
 
 sub server_port {
